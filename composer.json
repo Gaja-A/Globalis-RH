@@ -4,6 +4,7 @@
         "platform": {
             "php": "8.2.5"
         },
+        "platform-check": false,
         "allow-plugins": {
             "composer/installers": true,
             "roots/wordpress-core-installer": true

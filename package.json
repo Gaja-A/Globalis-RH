@@ -1,0 +1,93 @@
+{
+    "name": "mobi",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@chakra-ui/core": "^0.8.0",
+        "@emotion/core": "^11.0.0",
+        "@emotion/react": "^11.4.1",
+        "@emotion/styled": "^11.3.0",
+        "@material-ui/core": "^5.0.0-beta.5",
+        "@material-ui/lab": "^4.0.0-alpha.60",
+        "@material-ui/styles": "^4.11.4",
+        "@mobiscroll/calendar-integration": "^5.29.1",
+        "@mobiscroll/react": "^5.31.1",
+        "@react-icons/all-files": "^4.1.0",
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^11.2.7",
+        "@testing-library/user-event": "^12.8.3",
+        "axios": "^0.21.1",
+        "body-parser": "^1.19.0",
+        "bootbox": "^5.5.2",
+        "bootstrap": "^5.1.1",
+        "bootstrap-icons": "^1.7.2",
+        "circular-json": "^0.5.9",
+        "concurrently": "^6.3.0",
+        "cors": "^2.8.5",
+        "emotion-theming": "^11.0.0",
+        "express": "^4.17.1",
+        "googleapis": "^140.0.1",
+        "helmet": "^4.6.0",
+        "http-proxy-middleware": "^2.0.1",
+        "jquery": "^3.6.0",
+        "jquery-ui-bundle": "^1.12.1-migrate",
+        "moment": "^2.29.1",
+        "multiselect-react-dropdown": "^2.0.7",
+        "mysql": "^2.18.1",
+        "mysql2": "^2.3.0",
+        "nodemon": "^2.0.12",
+        "react": "^17.0.2",
+        "react-bootstrap": "^2.0.0-rc.0",
+        "react-bootstrap-confirmation": "^1.0.4",
+        "react-bootstrap-icons": "^1.6.1",
+        "react-bootstrap-multiselect": "^2.4.1",
+        "react-copy-to-clipboard": "^5.0.4",
+        "react-csv": "^2.2.2",
+        "react-data-components": "^1.2.0",
+        "react-dom": "^17.0.2",
+        "react-icons": "^4.3.1",
+        "react-loader-spinner": "^4.0.0",
+        "react-multi-select-component": "^4.1.13",
+        "react-paginate": "^7.1.5",
+        "react-redux": "^7.2.6",
+        "react-router": "^5.2.1",
+        "react-router-dom": "^5.3.0",
+        "react-script-tag": "^1.1.2",
+        "react-scripts": "4.0.3",
+        "react-scroll": "^1.8.6",
+        "react-table": "^7.7.0",
+        "reactstrap": "^8.10.0",
+        "styled-components": "^5.3.3",
+        "sudo": "^1.0.3",
+        "use-between": "0.0.18",
+        "web-vitals": "^1.1.2"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "proxy": "http://dev.weborganizer.fr",
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/mysql": "^2.15.19"
+    }
+}
