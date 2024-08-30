@@ -1,5 +1,11 @@
 <?php
 
+require_once '../../../vendor/autoload.php';
+
+use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+use Box\Spout\Common\Entity\Row;
+
 add_action('init', __NAMESPACE__ . '\\register_post_type_event', 10);
 add_action('init', __NAMESPACE__ . '\\register_post_type_registration', 10);
 
@@ -49,6 +55,67 @@ function register_post_type_event()
                 $sql_query = $wpdb->prepare("SELECT COUNT(`post_id`) as count FROM %i WHERE `meta_key` = 'registration_event_id' AND `meta_value` = %d", $wpdb->postmeta, $post->ID);
                 $result = $wpdb->get_row($sql_query, ARRAY_A);
                 echo $result['count'];
+            }],
+            'export' => ['title' => 'Export', 'sortable' => false, 'function' => function () {
+                global $post;
+                global $wpdb;
+                
+                $sql_query = $wpdb->prepare("SELECT GROUP_CONCAT(post_id) AS 'post_id' FROM %i WHERE `meta_value` = %d", $wpdb->postmeta, $post->ID);
+                $post_ids = $wpdb->get_var($sql_query);
+
+                $cols = ['registration_last_name', 'registration_first_name', 'registration_email', 'registration_phone'];
+                $query =" SELECT post_id ";
+                foreach($cols as $col) {
+                    $query.=" , MAX(IF(meta_key='".$col."', meta_value, '')) AS '".$col."'";
+                }
+                $query.=" FROM %i ";
+                $query.=" WHERE `post_id` IN (".$post_ids.") ";
+                $query.=" AND  meta_key IN ('".implode("', '", $cols)."') ";
+                $query.=" GROUP BY post_id ";
+                $sql_query = $wpdb->prepare($query, $wpdb->postmeta);
+                $result = $wpdb->get_results($sql_query);
+
+                try {
+                    $filePath = 'uploads/export_'.$post->ID.'.xlsx';
+                    $writer = WriterEntityFactory::createXLSXWriter();
+                    $writer->openToFile($filePath);
+
+                    // Header
+                    $header = [
+                        ['Nom', 'Prénom', 'Email', 'Téléphone'],
+                    ];
+                    foreach ($header as $h) {
+                        $head = [
+                            WriterEntityFactory::createCell($h[0]),
+                            WriterEntityFactory::createCell($h[1]),
+                            WriterEntityFactory::createCell($h[2]),
+                            WriterEntityFactory::createCell($h[3]),
+                        ];
+                        $singleRow = WriterEntityFactory::createRow($head);
+                        $writer->addRow($singleRow);
+                    }
+
+                    // Data
+                    foreach($result as $row) {
+                        $data = [
+                            [$row->registration_last_name, $row->registration_first_name, $row->registration_email, $row->registration_phone],
+                        ];
+                        foreach ($data as $d) {
+                            $cells = [
+                                WriterEntityFactory::createCell($d[0]),
+                                WriterEntityFactory::createCell($d[1]),
+                                WriterEntityFactory::createCell($d[2]),
+                                WriterEntityFactory::createCell($d[3]),
+                            ];
+                            $singleRow = WriterEntityFactory::createRow($cells);
+                            $writer->addRow($singleRow);
+                        }
+                    }
+                    $writer->close();
+                } catch(Exception $e) {
+                    error_log($e->getMessage());
+                }
+                echo '<a class="button" href="uploads/export_'.$post->ID.'.xlsx" download>Export</a>';
             }],
         ],
         'admin_filters'        => [],
