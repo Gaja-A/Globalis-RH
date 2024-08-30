@@ -1,32 +1,26 @@
 # globalis-rh-test-wordpress
 
-## Requirements
+## BugFix 1
 
-- Apache, Mysql, PHP (version 8.2)
-- Composer
-- Git
+![1 bugfix_1](https://github.com/user-attachments/assets/51b8cf93-a60b-4df6-8963-6260eb3b490d)
 
-## Installation
+![2 bugfix_1](https://github.com/user-attachments/assets/c4210ed2-dad8-4a0c-bc3c-d6af4617524f)
 
-- Clone this repository
-- Create a database and import file `./data/database.sql`
-- Copy content of `./data/media` into `./web/media/`
-- Copy `./config/local.sample.php` into `./config/local.php`
-- Copy `./config/vars.sample.php` into `./config/vars.php` and edit the file
-- run command `composer install`
-- run command `./vendor/bin/robo install`
-- Make sure Apache can write into `./log`,  `./web/media` and `./web/app/themes/wp-cubi-debug-theme/acf-json`
+## BugFix 2
 
-## Administration
+#### Pas terminé. Je n'arrive pas à visualiser le site front. Je suis en train de déboguer ce fix.
 
-WordPress admin is located at `<your-local-url>/wpcb/wp-admin/`
+![3 bugfix_2](https://github.com/user-attachments/assets/8091e182-a8c3-4086-b729-a15f711a46ea)
 
-You can login with following credentials :
+## Feature 1
 
-- username: `username`
-- password: `password`
+![5 feature_1](https://github.com/user-attachments/assets/96f171d0-e58c-4559-abd2-b91a651ad38f)
 
-## Note
+![6 feature_1](https://github.com/user-attachments/assets/ffdc706b-8347-403d-8728-667849a2d792)
 
-- Project structure is based on https://github.com/globalis-ms/wp-cubi
-- Most of the application custom code is located in `web/app/themes/wp-cubi-debug-theme/`
+## Feature 2
+
+![7 feature_2](https://github.com/user-attachments/assets/02ea1565-5701-4332-8f73-3b76b8f7166e)
+
+![8 feature_2](https://github.com/user-attachments/assets/cc435cd1-5ce0-4510-a929-362eb8e7cb94)
+
